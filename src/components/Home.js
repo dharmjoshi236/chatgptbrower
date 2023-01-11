@@ -44,11 +44,11 @@ const Home = ()=> {
                 subTopic: subTopic
             }
             setLoading(true);
-            setShowIcon(false)
             try{
                 const response = await axios.post('https://chatgpt-service.onrender.com/getchatgpt', data)
                 if (response && response.status === 200) {
                     setGeneratedText(response.data.data);
+                    setShowIcon(false)
                     setLoading(false)
                 }
             } catch(e){
@@ -123,7 +123,7 @@ const Home = ()=> {
              </Card.Body>
             </Card>
             {showIcon ? <> <Button variant='warning' onClick={()=> navigator.clipboard.writeText(generatedText)}>{<FaCopy size={20} color='black'/>}</Button> 
-            <Button style={{'marginLeft':'20px'}} variant='success' onClick={()=> handleData()}><MdRefresh size={23} color='white'/></Button> </> : null}
+            <Button style={{'marginLeft':'20px'}} variant='success' onClick={()=> {handleData()}}><MdRefresh size={23} color='white'/></Button> </> : null}
             </div>
             
             </> : null}
