@@ -44,6 +44,7 @@ const Home = ()=> {
                 subTopic: subTopic
             }
             setLoading(true);
+            setShowIcon(false)
             try{
                 const response = await axios.post('https://chatgpt-service.onrender.com/getchatgpt', data)
                 if (response && response.status === 200) {
