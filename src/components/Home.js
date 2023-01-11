@@ -17,7 +17,6 @@ const Home = ()=> {
     }
     const getSubtopics = (topicName) => {
         const getJson = GetTopicsJson();
-        console.log('getjson', getJson.topics[topicName].subTopic)
         return getJson.topics[topicName].subTopic; 
     }
 
@@ -26,6 +25,17 @@ const Home = ()=> {
     const [loading, setLoading] = useState(false);
     const [generatedText, setGeneratedText] = useState('')
     const [showAlert, setShowAlert] = useState(false);
+    const [showIcon, setShowIcon] = useState(false);
+
+    const handleIcon = (text)=> {
+        let totalNumOfWords = text.split('').length;
+        let totalTime = totalNumOfWords * 15;
+        setTimeout(setShowIconToTrue, totalTime)
+    }
+
+    const setShowIconToTrue = ()=> {
+        setShowIcon(true);
+    }
 
     const handleData = async() => {
         if (topic && subTopic) {
@@ -51,7 +61,11 @@ const Home = ()=> {
         }
     }
     const availableKeys = getKeysFromTopics(GetTopicsJson());
-    
+    const sliceTheInitialSpaces = (text)=> {
+        handleIcon(text);
+        return text.slice(2);
+    }
+ 
     return(
         <> 
         <h3 style={{'marginTop':'20px', 'fontSize':'2rem', 'fontWeight':'bold', 'textAlign':'center'}}>Blog Generator Using OpenAi Api</h3>
@@ -93,21 +107,22 @@ const Home = ()=> {
             <>
             {generatedText ? 
             <>
-            <div className='container' style={{'marginTop':'60px'}}>
-            <Button variant='warning' onClick={()=> navigator.clipboard.writeText(generatedText)}>{<FaCopy size={20} color='black'/>}</Button>
-            <Button style={{'marginLeft':'20px'}} variant='success' onClick={()=> handleData()}><MdRefresh size={23} color='white'/></Button>
-            <Card style={{'marginTop':'20px', 'marginBottom':'40px'}}>
-             <Card.Body>
+            <div className='container' style={{'marginTop':'60px', 'marginBottom':'30px'}}>
+            <Card style={{'marginTop':'20px', 'marginBottom':'10px'}}>
+             <Card.Body style={{'whiteSpace': 'break-spaces'}}>
                 <Typewriter
-                words={[generatedText]}
+                words={[sliceTheInitialSpaces(generatedText)]}
                 cursor
                 loop={1}
                 cursorStyle='_'
-                typeSpeed={35}
+                typeSpeed={10}
                 deleteSpeed={983243729847290} 
+                isType={(count)=> handleIcon(count, generatedText)}
                 />
              </Card.Body>
             </Card>
+            {showIcon ? <> <Button variant='warning' onClick={()=> navigator.clipboard.writeText(generatedText)}>{<FaCopy size={20} color='black'/>}</Button> 
+            <Button style={{'marginLeft':'20px'}} variant='success' onClick={()=> handleData()}><MdRefresh size={23} color='white'/></Button> </> : null}
             </div>
             
             </> : null}
