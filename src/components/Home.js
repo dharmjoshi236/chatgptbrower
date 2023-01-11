@@ -57,7 +57,7 @@ const Home = ()=> {
         <h3 style={{'marginTop':'20px', 'fontSize':'2rem', 'fontWeight':'bold', 'textAlign':'center'}}>Blog Generator Using OpenAi Api</h3>
         <div className='d-flex flex-row bd-highlight mb-3 justify-content-center'>
          <div>
-                <Form.Label style={{'marginTop':'70px'}} htmlFor="topic">Select the topic</Form.Label>
+                <Form.Label style={{'marginTop':'70px'}} htmlFor="topic">Select topic</Form.Label>
                 <Form.Select disabled={!!loading}  onChange={(e)=> setTopic(e.target.value)} value={topic} aria-label="Default select example">
                 {availableKeys.map((topicKey, index)=> (
                     <option id={index} selected value={topicKey}>{topicKey.toUpperCase()}</option>
@@ -65,7 +65,7 @@ const Home = ()=> {
                 </Form.Select>
          </div>
 
-         <div style={{'marginLeft':'40px'}}>
+         <div style={{'marginLeft':'5%'}}>
                 <Form.Label style={{'marginTop':'70px'}} htmlFor="topic">Select The Sub-Topic</Form.Label>
                 <Form.Select disabled={!!loading} onChange={(e)=> setSubTopic(e.target.value)} value={subTopic} aria-label="Default select example">
                     {getSubtopics(topic).map((subTopicKey, index)=> (
