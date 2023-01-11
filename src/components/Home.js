@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -9,7 +9,6 @@ import {FaCopy} from 'react-icons/fa'
 import {MdRefresh} from 'react-icons/md'
 import { Typewriter } from 'react-simple-typewriter'
 import Alert from 'react-bootstrap/Alert'
-import Collapse from 'react-bootstrap/Collapse';
 
 const Home = ()=> {
 
