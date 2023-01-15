@@ -65,12 +65,12 @@ const Home = ()=> {
     const availableKeys = getKeysFromTopics(GetTopicsJson());
     const sliceTheInitialSpaces = (text)=> {
         handleIcon(text);
-        return text.slice(1);
+        return text.slice(2);
     }
 
     const handleCopyClipboard = (text) => {
         navigator.clipboard.writeText(text);
-        setTooltipTitle("Copied")
+        setTooltipTitle("Copied");
     }
  
     return(
