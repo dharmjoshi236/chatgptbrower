@@ -124,8 +124,7 @@ const Home = ()=> {
                 loop={1}
                 cursorStyle='_'
                 typeSpeed={10}
-                deleteSpeed={983243729847290} 
-                isType={(count)=> handleIcon(count, generatedText)}
+                deleteSpeed={983243729847290}
                 />
              </Card.Body>
             </Card>
