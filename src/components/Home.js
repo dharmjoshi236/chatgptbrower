@@ -26,6 +26,7 @@ const Home = ()=> {
     const [generatedText, setGeneratedText] = useState('')
     const [showAlert, setShowAlert] = useState(false);
     const [showIcon, setShowIcon] = useState(false);
+    const [tooltipTitle, setTooltipTitle] = useState("Copy To Clipboard");
 
     const handleIcon = (text)=> {
         let totalNumOfWords = text.split('').length;
@@ -64,7 +65,12 @@ const Home = ()=> {
     const availableKeys = getKeysFromTopics(GetTopicsJson());
     const sliceTheInitialSpaces = (text)=> {
         handleIcon(text);
-        return text.slice(2);
+        return text.slice(1);
+    }
+
+    const handleCopyClipboard = (text) => {
+        navigator.clipboard.writeText(text);
+        setTooltipTitle("Copied")
     }
  
     return(
@@ -122,7 +128,8 @@ const Home = ()=> {
                 />
              </Card.Body>
             </Card>
-            {showIcon ? <> <Button variant='warning' onClick={()=> navigator.clipboard.writeText(generatedText)}>{<FaCopy size={20} color='black'/>}</Button> 
+            
+            {showIcon ? <> <Button variant='warning' data-toggle="tooltip" data-placement="top" title={tooltipTitle} onClick={()=> handleCopyClipboard(generatedText)}>{<FaCopy size={20} color='black'/>}</Button> 
             <Button style={{'marginLeft':'20px'}} variant='success' onClick={()=> {handleData()}}><MdRefresh size={23} color='white'/></Button> </> : null}
             </div>
             
