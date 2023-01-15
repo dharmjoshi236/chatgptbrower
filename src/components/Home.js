@@ -65,7 +65,7 @@ const Home = ()=> {
     const availableKeys = getKeysFromTopics(GetTopicsJson());
     const sliceTheInitialSpaces = (text)=> {
         handleIcon(text);
-        return text.slice(2);
+        return text.slice(1);
     }
 
     const handleCopyClipboard = (text) => {
