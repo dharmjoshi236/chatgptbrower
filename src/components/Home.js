@@ -30,7 +30,7 @@ const Home = ()=> {
 
     const handleIcon = (text)=> {
         let totalNumOfWords = text.split('').length;
-        let totalTime = totalNumOfWords * 15;
+        let totalTime = totalNumOfWords * 19;
         setTimeout(setShowIconToTrue, totalTime)
     }
 
@@ -51,6 +51,7 @@ const Home = ()=> {
                     setGeneratedText(response.data.data);
                     setShowIcon(false)
                     setLoading(false)
+                    setTooltipTitle('Copy To Clipboard')
                 }
             } catch(e){
                 setShowAlert(true);
